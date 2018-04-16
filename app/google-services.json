@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "556267148587",
+    "firebase_url": "https://medmanager-ff154.firebaseio.com",
+    "project_id": "medmanager-ff154",
+    "storage_bucket": "medmanager-ff154.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556267148587:android:7c5b5e54474322e9",
+        "android_client_info": {
+          "package_name": "com.oluwatayo.apps.medmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "556267148587-3dmaqm45su5044lg7lo86dbj0a7die40.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.oluwatayo.apps.medmanager",
+            "certificate_hash": "0cb16b6e8fb130ef3e8b0a7d589c8aa8360ef3db"
+          }
+        },
+        {
+          "client_id": "556267148587-j15p0fa0efojmlaj6t784nn7b435fjv2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRrhYF8ld9PmRSsRrpntKgA8v1T42n74I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "556267148587-j15p0fa0efojmlaj6t784nn7b435fjv2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
