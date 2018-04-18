@@ -15,6 +15,8 @@
     <string name="choose_end_date">Choose End Date</string>
     <string name="_3">Every 3 Hours</string>
     <string name="add_medication">ADD MEDICATION</string>
+    <string name="select_medication_type">Select Medication Type</string>
+    <string name="empty_med_image">empty med image</string>
 
     <string-array name="med_types">
         <item>Tablet</item>

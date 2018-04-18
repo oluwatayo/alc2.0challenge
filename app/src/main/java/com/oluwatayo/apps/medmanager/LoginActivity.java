@@ -117,7 +117,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void Redirect(){
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, ContainerActivity.class));
         finish();
     }
 

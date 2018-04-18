@@ -15,12 +15,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.oluwatayo.apps.medmanager.Fragments.MedicationListFragment;
 import com.oluwatayo.apps.medmanager.Fragments.NewMedFragment;
 
 public class ContainerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FragmentManager manager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +29,11 @@ public class ContainerActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         manager = getSupportFragmentManager();
+
+        if(savedInstanceState == null){
+            FragmentTransaction fragmentTransaction = manager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, MedicationListFragment.NewInstance()).commit();
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

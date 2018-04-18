@@ -66,6 +66,7 @@ public class NewMedFragment extends Fragment implements View.OnClickListener, Da
         ButterKnife.bind(this, view);
         addMedButton.setOnClickListener(this);
         startDateSelector.setOnClickListener(this);
+        getActivity().findViewById(R.id.fab).setVisibility(View.INVISIBLE);
         endDateSelector.setOnClickListener(this);
         Calendar calendar = Calendar.getInstance();
         datePickerDialog = new DatePickerDialog(getContext(), this, calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));

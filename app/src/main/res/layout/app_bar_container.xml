@@ -29,7 +29,7 @@
         app:elevation="10dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:backgroundTint="@color/colorPrimary"
+        app:backgroundTint="@color/colorPrimary"
         app:rippleColor="@color/colorPrimaryDark"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_add_white_24dp"

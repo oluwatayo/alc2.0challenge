@@ -2,6 +2,7 @@ package com.oluwatayo.apps.medmanager.Data;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -29,6 +30,9 @@ public class Medication {
     private String endDate;
 
     private int interval;
+
+    @Ignore
+    public Medication(){}
 
     public Medication(String name, String description, String medType, String startDate, String endDate, int interval) {
         this.name = name;

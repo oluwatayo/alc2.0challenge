@@ -17,7 +17,7 @@ import static android.arch.persistence.room.OnConflictStrategy.IGNORE;
 public interface MedicationDao {
 
     @Query("select * from medication")
-    List<Medication> loadAllUsers();
+    List<Medication> loadAllMedications();
 
     @Query("select * from medication where id = :id")
     Medication loadMedicationById(int  id);
@@ -33,6 +33,9 @@ public interface MedicationDao {
 
     @Delete
     void deleteMedication(Medication medication1, Medication medication2);
+
+    @Query("select * from medication where name like :name")
+    List<Medication> getMedicationByName(String name);
 
     @Query("delete from medication where id = :id")
     int deleteMedicationById(int  id);
