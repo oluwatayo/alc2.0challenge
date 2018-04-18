@@ -11,4 +11,20 @@
     <string name="medication_type">Medication Type</string>
     <string name="medication_name">Medication Name</string>
     <string name="medication_description">Medication Description</string>
+    <string name="choose_start_date">Choose Start Date</string>
+    <string name="choose_end_date">Choose End Date</string>
+    <string name="_3">Every 3 Hours</string>
+    <string name="add_medication">ADD MEDICATION</string>
+
+    <string-array name="med_types">
+        <item>Tablet</item>
+        <item>Capsule</item>
+        <item>Syrup</item>
+        <item>Injection</item>
+    </string-array>
+    <string-array name="intervals">
+        <item>Hours</item>
+        <item>Minutes</item>
+        <item>Seconds</item>
+    </string-array>
 </resources>

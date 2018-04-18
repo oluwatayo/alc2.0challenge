@@ -13,22 +13,48 @@ import android.support.annotation.NonNull;
 public class Medication {
 
     @PrimaryKey(autoGenerate = true)
-    @NonNull
-    public String id;
+    public int id;
 
     public String name;
 
-    public String description;
+    private String description;
 
     @ColumnInfo(name = "med_type")
-    public String medType;
+    private String medType;
 
     @ColumnInfo(name = "start_date")
-    public String startDate;
+    private String startDate;
 
     @ColumnInfo(name = "end_date")
-    public String endDate;
+    private String endDate;
 
-    public int interval;
+    private int interval;
 
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getMedType() {
+        return medType;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public int getInterval() {
+        return interval;
+    }
 }
