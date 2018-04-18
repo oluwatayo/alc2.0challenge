@@ -14,6 +14,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,8 +24,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
+    @BindView(R.id.gSignIn)
+    SignInButton signInButton;
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
     private static final String TAG = LoginActivity.class.getSimpleName();
@@ -36,6 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -44,6 +51,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         mAuth = FirebaseAuth.getInstance();
+        signInButton.setOnClickListener(this);
     }
 
     @Override
@@ -60,9 +68,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
-                // [START_EXCLUDE]
                 Toast.makeText(this, "Error : "+e.getMessage(), Toast.LENGTH_LONG).show();
-                // [END_EXCLUDE]
             }
         }
     }
@@ -96,6 +102,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void signIn() {
+        Toast.makeText(this, "OK Google", Toast.LENGTH_LONG).show();
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -131,7 +138,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        if(id == R.id.gSignIn)
-            signIn();
+        switch (id){
+            case R.id.gSignIn:
+                signIn();
+                break;
+        }
     }
 }
