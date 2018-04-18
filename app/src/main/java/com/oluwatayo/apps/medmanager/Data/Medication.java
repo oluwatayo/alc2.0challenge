@@ -30,6 +30,15 @@ public class Medication {
 
     private int interval;
 
+    public Medication(String name, String description, String medType, String startDate, String endDate, int interval) {
+        this.name = name;
+        this.description = description;
+        this.medType = medType;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.interval = interval;
+    }
+
     public int getId() {
         return id;
     }
