@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/med_det_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/medication_details_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_pill" />
+
+        <TextView
+            android:id="@+id/med_det_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/baumans"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/med_det_image"
+            app:layout_constraintTop_toTopOf="@+id/med_det_image"
+            tools:text="Lisinopril USP 10 Mg " />
+
+        <TextView
+            android:id="@+id/med_det_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/baumans"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/med_det_image"
+            app:layout_constraintTop_toBottomOf="@+id/med_det_name"
+            tools:text="Tablet for maintaining/reducing high blood pressure" />
+
+        <ImageView
+            android:id="@+id/usedBackground"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/notUsedBackground"
+            app:layout_constraintTop_toBottomOf="@id/med_det_info"
+            app:srcCompat="@color/colorPrimary" />
+
+        <ImageView
+            android:id="@+id/notUsedBackground"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintLeft_toRightOf="@id/usedBackground"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/usedBackground"
+            app:srcCompat="@color/material_red" />
+
+        <TextView
+            android:id="@+id/med_det_used_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/baumans"
+            android:text="@string/used"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@id/usedBackground"
+            app:layout_constraintRight_toRightOf="@id/usedBackground"
+            app:layout_constraintTop_toTopOf="@id/usedBackground" />
+
+        <TextView
+            android:id="@+id/med_det_used"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/baumans"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintLeft_toLeftOf="@id/med_det_used_heading"
+            app:layout_constraintRight_toRightOf="@id/med_det_used_heading"
+            app:layout_constraintTop_toBottomOf="@id/med_det_used_heading"
+            tools:text="100" />
+
+        <TextView
+            android:id="@+id/med_det_not_used_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/baumans"
+            android:text="@string/missed"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@id/notUsedBackground"
+            app:layout_constraintRight_toRightOf="@id/notUsedBackground"
+            app:layout_constraintTop_toTopOf="@id/notUsedBackground" />
+
+        <TextView
+            android:id="@+id/med_det_missed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/baumans"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintLeft_toLeftOf="@id/med_det_not_used_heading"
+            app:layout_constraintRight_toRightOf="@id/med_det_not_used_heading"
+            app:layout_constraintTop_toBottomOf="@id/med_det_not_used_heading"
+            tools:text="30" />
+
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/med_det_message_good"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:drawableLeft="@drawable/ic_check_green_24dp"
+            android:drawableStart="@drawable/ic_check_green_24dp"
+            android:fontFamily="@font/baumans"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/usedBackground"
+            android:text="@string/you_are_taking_the_medication_well" />
+        <TextView
+            android:visibility="visible"
+            android:id="@+id/med_det_message_bad"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:drawableLeft="@drawable/ic_warning_24dp"
+            android:drawableStart="@drawable/ic_warning_24dp"
+            android:fontFamily="@font/baumans"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/usedBackground"
+            android:text="@string/you_are_not_taking_the_meds_well" />
+
+        <TextView
+            android:id="@+id/med_det_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/baumans"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/med_det_image"
+            tools:text="lorem10" />
+
+        <CheckBox
+            android:id="@+id/reminder_toggle"
+            android:fontFamily="@font/baumans"
+            android:layout_margin="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/med_det_message_good"
+            android:text="@string/show_reminder_for_this_medication"/>
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

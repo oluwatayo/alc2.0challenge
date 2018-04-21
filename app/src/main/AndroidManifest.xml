@@ -21,7 +21,12 @@
         <activity
             android:name=".ContainerActivity"
             android:label="@string/title_activity_container"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTop">
+
+        </activity>
+        <receiver android:name=".utils.ReminderUtils"/>
+        <service android:name=".utils.DrugUsageService" />
     </application>
 
 </manifest>

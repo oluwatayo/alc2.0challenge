@@ -6,16 +6,16 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 
-@Database(entities = {Medication.class}, version = 1, exportSchema = false)
+@Database(entities = {Medication.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
 
     public abstract MedicationDao medModel();
 
-    public static AppDatabase getInMemoryDatabase(Context context){
+    public static AppDatabase getINSTANCE(Context context){
         if(INSTANCE == null){
-            INSTANCE = Room.inMemoryDatabaseBuilder(context.getApplicationContext(), AppDatabase.class)
+            INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "meds.db")
                     .allowMainThreadQueries()
                     .build();
         }

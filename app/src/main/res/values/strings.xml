@@ -13,10 +13,29 @@
     <string name="medication_description">Medication Description</string>
     <string name="choose_start_date">Choose Start Date</string>
     <string name="choose_end_date">Choose End Date</string>
-    <string name="_3">Every 3 Hours</string>
+    <string name="_3">3</string>
     <string name="add_medication">ADD MEDICATION</string>
     <string name="select_medication_type">Select Medication Type</string>
     <string name="empty_med_image">empty med image</string>
+    <string name="medications">Medications</string>
+    <string name="choose_starting_time">Choose Start Time</string>
+    <string name="medication_details_image">Medication Details Image</string>
+    <string name="used">Used</string>
+    <string name="missed">Missed</string>
+    <string name="med_info">You Started this medication on %1$s and you\'ll end it on %2$s .</string>
+    <string name="you_are_taking_the_medication_well">You are taking the medication well</string>
+    <string name="you_are_not_taking_the_meds_well">You are not taking the meds well</string>
+    <string name="show_reminder_for_this_medication">Show Reminder For This Medication</string>
+    <string name="delete_all_meds">Delete All Meds</string>
+    <string name="delete_med">Delete Med</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="date_of_birth">Date Of Birth</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="select_gender">Select Gender</string>
+    <string name="completed_medications">Completed Medications : %1$s</string>
+    <string name="meds_in_use">Meds In Use : %1$s</string>
+    <string name="medication_used_monthly">Medication Used Monthly</string>
 
     <string-array name="med_types">
         <item>Tablet</item>

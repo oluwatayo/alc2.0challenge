@@ -37,10 +37,22 @@ public interface MedicationDao {
     @Query("select * from medication where name like :name")
     List<Medication> getMedicationByName(String name);
 
+    @Query("select * from medication where med_uid like :uid")
+    List<Medication> getMedicationByUid(String uid);
+
     @Query("delete from medication where id = :id")
     int deleteMedicationById(int  id);
 
     @Query("DELETE FROM medication")
     void deleteAll();
+
+    @Query("update medication set no_of_time_used = no_of_time_used + 1 where med_uid = :uid")
+    int updateMedicationUsed(String uid);
+
+    @Query("update medication set no_of_time_missed = no_of_time_missed + 1 where med_uid = :uid")
+    int updateMedicationMissed(String uid);
+
+    @Query("update medication set show_reminder = :showReminder")
+    int updateShowReminder(int showReminder);
 }
 

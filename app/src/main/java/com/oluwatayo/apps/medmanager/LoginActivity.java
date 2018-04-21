@@ -3,6 +3,8 @@ package com.oluwatayo.apps.medmanager;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,13 +39,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final int RC_SIGN_IN = 9001;
     ProgressDialog mProgressDialog;
 
+    SharedPreferences preferences;
+
+    public static final String PREF_USER_GENDER = "user_gender";
+    public static final String PREF_USER_DOB = "user_dob";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        setUpPreferences();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -52,6 +60,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         mAuth = FirebaseAuth.getInstance();
         signInButton.setOnClickListener(this);
+    }
+
+    private void setUpPreferences() {
+        if(!preferences.contains(PREF_USER_GENDER)){
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(PREF_USER_GENDER, "");
+            editor.putString(PREF_USER_DOB, "");
+            editor.apply();
+        }
     }
 
     @Override
@@ -102,7 +119,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void signIn() {
-        Toast.makeText(this, "OK Google", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "OK Google, Sign Me In", Toast.LENGTH_LONG).show();
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }

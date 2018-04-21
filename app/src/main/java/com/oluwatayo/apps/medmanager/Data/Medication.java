@@ -6,10 +6,9 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-/**
- * Created by root on 4/18/18.
- */
+import org.parceler.Parcel;
 
+@Parcel
 @Entity
 public class Medication {
 
@@ -18,29 +17,45 @@ public class Medication {
 
     public String name;
 
-    private String description;
+    public String description;
 
     @ColumnInfo(name = "med_type")
-    private String medType;
+    public String medType;
 
     @ColumnInfo(name = "start_date")
-    private String startDate;
+    public String startDate;
 
     @ColumnInfo(name = "end_date")
-    private String endDate;
+    public String endDate;
 
-    private int interval;
+    public long interval;
+
+    @ColumnInfo(name = "med_uid")
+    public String meduid;
+
+    @ColumnInfo(name = "no_of_time_used")
+    public int noOfTimeUsed;
+
+    @ColumnInfo(name = "no_of_time_missed")
+    public int noOfTimeMissed;
+
+    @ColumnInfo(name = "show_reminder")
+    public int showReminder;
 
     @Ignore
     public Medication(){}
 
-    public Medication(String name, String description, String medType, String startDate, String endDate, int interval) {
+    public Medication(String name, String description, String medType, String startDate, String endDate, long interval, String meduid) {
         this.name = name;
         this.description = description;
         this.medType = medType;
         this.startDate = startDate;
         this.endDate = endDate;
         this.interval = interval;
+        this.meduid = meduid;
+        this.noOfTimeUsed = 0;
+        this.noOfTimeMissed = 0;
+        this.showReminder = 1;
     }
 
     public int getId() {
@@ -67,7 +82,23 @@ public class Medication {
         return endDate;
     }
 
-    public int getInterval() {
+    public long getInterval() {
         return interval;
+    }
+
+    public String getMeduid() {
+        return meduid;
+    }
+
+    public int getNoOfTimeUsed() {
+        return noOfTimeUsed;
+    }
+
+    public int getNoOfTimeMissed() {
+        return noOfTimeMissed;
+    }
+
+    public int getShowReminder(){
+        return showReminder;
     }
 }

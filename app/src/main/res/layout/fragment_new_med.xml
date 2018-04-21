@@ -41,74 +41,46 @@
 
         <TextView
             android:id="@+id/select_hint"
-            app:layout_constraintTop_toBottomOf="@id/med_description_input_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/select_medication_type"/>
+            android:text="@string/select_medication_type"
+            app:layout_constraintTop_toBottomOf="@id/med_description_input_layout" />
+
         <Spinner
-            android:layout_marginBottom="16dp"
-            android:background="@color/accentLight"
             android:id="@+id/med_type_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@color/accentLight"
             android:padding="8dp"
             app:layout_constraintTop_toBottomOf="@id/select_hint">
 
         </Spinner>
 
-        <Button
-            android:layout_marginTop="16dp"
+        <EditText
+            android:layout_width="match_parent"
+            android:focusableInTouchMode="false"
+            android:hint="@string/choose_start_date"
+            android:inputType="datetime"
+            style="@style/EditTexts"
             android:id="@+id/start_date_selector"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:background="@color/colorPrimary"
-            android:fontFamily="@font/baumans"
-            android:text="@string/choose_start_date"
-            android:textColor="@color/white"
+            android:layout_margin="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/med_type_spinner">
 
-        </Button>
+        </EditText>
 
-        <TextView
-            android:id="@+id/start_date_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:fontFamily="@font/baumans"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            app:layout_constraintBottom_toBottomOf="@id/start_date_selector"
-            app:layout_constraintLeft_toRightOf="@id/start_date_selector"
-            app:layout_constraintTop_toTopOf="@id/start_date_selector"
-            tools:text="12/09/12" />
-
-        <Button
+        <EditText
+            android:focusableInTouchMode="false"
+            android:hint="@string/choose_end_date"
+            android:inputType="datetime"
+            style="@style/EditTexts"
             android:id="@+id/end_date_selector"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/material_red"
-            android:fontFamily="@font/baumans"
-            android:text="@string/choose_end_date"
-            android:textColor="@color/white"
+            android:layout_margin="8dp"
             app:layout_constraintLeft_toLeftOf="@id/start_date_selector"
             app:layout_constraintTop_toBottomOf="@id/start_date_selector">
 
-        </Button>
-
-        <TextView
-            android:id="@+id/end_date_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:fontFamily="@font/baumans"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            app:layout_constraintBottom_toBottomOf="@id/end_date_selector"
-            app:layout_constraintLeft_toRightOf="@id/end_date_selector"
-            app:layout_constraintTop_toTopOf="@id/end_date_selector"
-            tools:text="12/09/12" />
+        </EditText>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/interval_inputLayout"
@@ -121,6 +93,7 @@
             app:layout_constraintTop_toBottomOf="@id/end_date_selector">
 
             <EditText
+                android:id="@+id/interval_editText"
                 style="@style/EditTexts"
                 android:hint="@string/_3"
                 android:inputType="number" />
@@ -128,11 +101,11 @@
         </android.support.design.widget.TextInputLayout>
 
         <Spinner
-            android:padding="8dp"
-            android:background="@color/accentLight"
             android:id="@+id/interval_spinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@color/accentLight"
+            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="@id/interval_inputLayout"
             app:layout_constraintLeft_toRightOf="@id/interval_inputLayout"
             app:layout_constraintRight_toRightOf="parent"
@@ -140,27 +113,22 @@
 
         </Spinner>
 
-        <FrameLayout
+
+        <Button
+            android:id="@+id/add_med_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:layout_marginTop="24dp"
             android:background="@drawable/button_background"
+            android:drawableLeft="@drawable/ic_add_red_24dp"
+            android:drawableStart="@drawable/ic_add_red_24dp"
+            android:fontFamily="@font/baumans"
+            android:text="@string/add_medication"
+            android:textColor="@color/white"
             app:layout_constraintLeft_toRightOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/interval_spinner">
-
-            <Button
-                android:id="@+id/add_med_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:drawableLeft="@drawable/ic_add_red_24dp"
-                android:drawableStart="@drawable/ic_add_red_24dp"
-                android:fontFamily="@font/baumans"
-                android:text="@string/add_medication"
-                android:textColor="@color/white" />
-
-        </FrameLayout>
+            app:layout_constraintTop_toBottomOf="@id/interval_spinner" />
 
 
     </android.support.constraint.ConstraintLayout>
