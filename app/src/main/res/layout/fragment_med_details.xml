@@ -134,7 +134,7 @@
             app:layout_constraintTop_toBottomOf="@id/usedBackground"
             android:text="@string/you_are_taking_the_medication_well" />
         <TextView
-            android:visibility="visible"
+            android:visibility="invisible"
             android:id="@+id/med_det_message_bad"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

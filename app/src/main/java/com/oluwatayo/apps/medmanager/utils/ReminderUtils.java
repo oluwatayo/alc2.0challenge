@@ -1,5 +1,6 @@
 package com.oluwatayo.apps.medmanager.utils;
 
+import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -42,6 +43,13 @@ public class ReminderUtils extends BroadcastReceiver {
         if(medications.size() < 1)
             return;
         Medication medication = medications.get(0);
+        //Cancel The alarm after the end date
+        if(System.currentTimeMillis() >= DateUtils.getDateInMilliseconds(medication.getEndDate())){
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, medication.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            assert alarmManager != null;
+            alarmManager.cancel(pendingIntent);
+        }
         if(System.currentTimeMillis() < DateUtils.getDateInMilliseconds(medication.getEndDate()) && medication.getShowReminder() == 1)
             showReminder(context, medication);
     }

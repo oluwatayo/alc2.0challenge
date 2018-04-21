@@ -35,6 +35,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -187,7 +188,7 @@ public class NewMedFragment extends Fragment implements View.OnClickListener, Da
 
     private boolean validateFields(String... strings) {
         for (String a : strings) {
-            Log.e(LOG_TAG, "data :" + a);
+            //Log.e(LOG_TAG, "data :" + a);
             if (null == a || TextUtils.isEmpty(a)) {
                 return false;
             }
@@ -197,17 +198,19 @@ public class NewMedFragment extends Fragment implements View.OnClickListener, Da
     }
 
     private void insertToDatabase(long interval) {
-        String medUid = UUID.randomUUID().toString().replaceAll("-", "");
+        String medUid = UUID.randomUUID().toString().replaceAll("-","");
         Medication med = new Medication(medName, medDescription, medType, startDate, endDate, interval, medUid);
         mDb.medModel().insertMedication(med);
         //Set The Alarm For The Medicine
         Intent intent = new Intent(getActivity(), ReminderUtils.class);
         intent.putExtra(MED_INTENT_DATA, medUid);
-
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), PDI_REQUEST_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        long triggerAt = DateUtils.getDateInMilliseconds(startDate);
+        Medication m = mDb.medModel().getMedicationByUid(medUid).get(0);
+        Log.e(LOG_TAG, "ID: "+m.getId());
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), m.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
         assert alarmManager != null;
-        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(30), pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, triggerAt, interval, pendingIntent);
 
         Toast.makeText(getContext(), "New Medication : " + medName + " Added", Toast.LENGTH_LONG).show();
         getActivity().getSupportFragmentManager().popBackStack();

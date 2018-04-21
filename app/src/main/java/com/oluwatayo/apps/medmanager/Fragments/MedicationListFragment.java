@@ -27,11 +27,12 @@ import com.oluwatayo.apps.medmanager.Interfaces.ClickListeners.MedItemClickListe
 import com.oluwatayo.apps.medmanager.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MedicationListFragment extends Fragment implements MedItemClickListener{
+public class MedicationListFragment extends Fragment implements MedItemClickListener {
 
     private View view;
     @BindView(R.id.medication_list_recycler_view)
@@ -46,6 +47,7 @@ public class MedicationListFragment extends Fragment implements MedItemClickList
     private AppDatabase mDb;
     private MedicationListAdapter medicationListAdapter;
     ArrayList<Medication> medications;
+
     public static MedicationListFragment NewInstance() {
         return new MedicationListFragment();
     }
@@ -73,29 +75,48 @@ public class MedicationListFragment extends Fragment implements MedItemClickList
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                fetchDataFromDatabase(query);
+                searchForMed(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                fetchDataFromDatabase(newText);
+                searchForMed(newText);
                 return false;
             }
         });
-        fetchDataFromDatabase(null);
+        fetchDataFromDatabase();
         return view;
     }
 
-    private void fetchDataFromDatabase(String query) {
+    private void searchForMed(String query) {
         indicator.setVisibility(View.VISIBLE);
-        if(query == null || TextUtils.isEmpty(query))
-            medications = (ArrayList<Medication>) mDb.medModel().loadAllMedications();
-        else
-            medications = (ArrayList<Medication>) mDb.medModel().getMedicationByName(query);
-        if(medications.size() < 1){
+        ArrayList<Medication> meds = (ArrayList<Medication>) mDb.medModel().loadAllMedications();
+        query = query.toLowerCase();
+        if (meds.size() < 1 || TextUtils.isEmpty(query)) {
+            showSearchResult(meds);
+            return;
+        }
+        for (int i = 0; i < meds.size(); i++) {
+            if (!meds.get(i).getName().toLowerCase().contains(query))
+                meds.remove(i);
+
+        }
+        showSearchResult(meds);
+    }
+
+    void showSearchResult(ArrayList<Medication> medications){
+        medicationListAdapter.swapData(medications);
+        //medRecyclerView.setAdapter(medicationListAdapter);
+        indicator.setVisibility(View.INVISIBLE);
+    }
+
+    private void fetchDataFromDatabase() {
+        indicator.setVisibility(View.VISIBLE);
+        medications = (ArrayList<Medication>) mDb.medModel().loadAllMedications();
+        if (medications.size() < 1) {
             emptyMed.setVisibility(View.VISIBLE);
-        }else
+        } else
             emptyMed.setVisibility(View.INVISIBLE);
         medicationListAdapter.swapData(medications);
         medRecyclerView.setAdapter(medicationListAdapter);
@@ -126,7 +147,7 @@ public class MedicationListFragment extends Fragment implements MedItemClickList
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id){
+        switch (id) {
             case R.id.action_delete_all:
                 deleteAllMeds();
         }

@@ -74,9 +74,9 @@ public class MedDetailsFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b)
-                    mDb.medModel().updateShowReminder(1);
+                    mDb.medModel().updateShowReminder(1, medication.getId());
                 else
-                    mDb.medModel().updateShowReminder(0);
+                    mDb.medModel().updateShowReminder(0, medication.getId());
             }
         });
         initUI();
@@ -93,12 +93,14 @@ public class MedDetailsFragment extends Fragment {
         medDetImage.setImageDrawable(d);
         medDetInfoView.setText(info);
         id = medication.getId();
-        if (medication.noOfTimeMissed >= medication.noOfTimeUsed) {
-            medDetMessageGood.setVisibility(View.INVISIBLE);
-            medDetMessageBad.setVisibility(View.VISIBLE);
-        } else {
-            medDetMessageGood.setVisibility(View.VISIBLE);
-            medDetMessageBad.setVisibility(View.INVISIBLE);
+        if((medication.getNoOfTimeUsed()+medication.getNoOfTimeMissed()) != 0){
+            if (medication.noOfTimeMissed >= medication.noOfTimeUsed) {
+                medDetMessageGood.setVisibility(View.INVISIBLE);
+                medDetMessageBad.setVisibility(View.VISIBLE);
+            } else {
+                medDetMessageGood.setVisibility(View.VISIBLE);
+                medDetMessageBad.setVisibility(View.INVISIBLE);
+            }
         }
         if (medication.getShowReminder() == 1)
             toggle.setChecked(true);
