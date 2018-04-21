@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.oluwatayo.apps.medmanager.ContainerActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-    </android.support.design.widget.AppBarLayout>
+    </FrameLayout>
 
     <include layout="@layout/content_container" />
 

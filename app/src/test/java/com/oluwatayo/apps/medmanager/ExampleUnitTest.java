@@ -21,7 +21,7 @@ public class ExampleUnitTest {
 
     @Test
     public void dateCorrect()throws Exception{
-        long date = DateUtils.getDateInMilliseconds("2018/04/13");
+        long date = DateUtils.getDateInMilliseconds("2018/04/13 11:59");
         Calendar calendar = Calendar.getInstance();
         calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         long today = calendar.getTimeInMillis();
